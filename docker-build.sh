@@ -38,15 +38,15 @@ dt=`date '+%Y%m%d'`
 
 rm -f $current_dir/releases/dhis2.war
 
-wget -O "$current_dir/$releases_dir/$file_name" "https://s3-eu-west-1.amazonaws.com/releases.dhis2.org/$DHIS2_VERSION/dhis.war"
+wget -O "$current_dir/$releases_dir/$file_name" "https://releases.dhis2.org/2.40/dev/dhis2-dev-2.40.war"
 
 cp -a "$current_dir/$releases_dir/$file_name" "$current_dir/releases/dhis2.war"
 
 # build new image using new dhis.war 
-image_id=$(docker build -q -t dhis2/dhis2-web:$DHIS2_VERSION-tomcat7-jre8-$dt .)
+image_id=$(docker build -q -t dhis2/dhis2-web:$DHIS2_VERSION-tomcat9-jre8-$dt .)
 
 echo "Image id: $image_id"
-docker tag $image_id dhis2/dhis2-web:$DHIS2_VERSION-tomcat7-jre8-latest
+docker tag $image_id dhis2/dhis2-web:$DHIS2_VERSION-tomcat9-jre8-latest
 
 docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 docker push dhis2/dhis2-web
