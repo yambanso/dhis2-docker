@@ -1,4 +1,4 @@
-FROM tomcat:7-jre8
+FROM tomcat:9-jre8
 
 RUN rm -rf /usr/local/tomcat/webapps/ROOT
 COPY conf/hibernate.properties /opt/dhis2/config/hibernate.properties
